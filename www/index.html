@@ -2,12 +2,14 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com maxcdn.bootstrapcdn.com 'unsafe-eval' http://open.mapquestapi.com; style-src 'self' maxcdn.bootstrapcdn.com 'unsafe-inline'; media-src *">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com cdn.leafletjs.com maxcdn.bootstrapcdn.com 'unsafe-eval' http://open.mapquestapi.com; style-src 'self' cdn.leafletjs.com maxcdn.bootstrapcdn.com 'unsafe-inline'; media-src *; img-src *.tile.openstreetmap.org">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
     <title>Ceburilo</title>
   </head>
   <body>
@@ -15,11 +17,11 @@
 
       <div data-template-name="main">
         <!-- Logo -->
-        <nav class="navbar navbar-inverse navbar-static-top">
+        <div class="navbar navbar-inverse navbar-static-top">
           <div class="container">
             <a class="navbar-brand text-center center-block">Ceburilo</a>
           </div>
-        </nav>
+        </div>
 
         <!-- Glowna czesc -->
         <div class="container fill">
@@ -52,7 +54,13 @@
       </div>
 
       <div data-template-name="map">
+        <div class="container text-center">
+          23423452ms
+        </div>
+        <div id="mapid"></div>
+        <div class="container">
         <a href="#" id="show-main">show main</a>
+        </div>
       </div>
 
       <div data-template-name="autocomplete-item">

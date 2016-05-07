@@ -35,11 +35,15 @@
   height: 100%;
 }
 
-body, #app, #main, [data-template-name=main] {
+body, #templates, #app, #main, [data-template-name=main], [data-template-name=map] {
   height: 100%;
 }
 
 .col-sm-6 {
   padding-top: 30px;
   padding-bottom: 15px;
+}
+
+#mapid {
+  min-height: 200px;
 }

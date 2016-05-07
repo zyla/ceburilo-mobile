@@ -74,6 +74,13 @@ function map() {
   document.getElementById('show-main').addEventListener('click', function() {
     main();
   });
+
+  var mymap = L.map("mapid").setView([52.2315875, 21.0072721], 12);
+  L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution:
+      '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    maxZoom: 19
+  }).addTo(mymap);
 }
 
 main();
