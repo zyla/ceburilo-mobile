@@ -30,13 +30,12 @@
   float: none;
 }
 
-.fill {
-  min-height: 100%;
+html, body, #templates, #app, #main, [data-template-name=main], [data-template-name=map] {
   height: 100%;
 }
 
-body, #templates, #app, #main, [data-template-name=main], [data-template-name=map] {
-  height: 100%;
+#templates {
+  position: absolute;
 }
 
 .col-sm-6 {
@@ -46,4 +45,20 @@ body, #templates, #app, #main, [data-template-name=main], [data-template-name=ma
 
 #mapid {
   min-height: 200px;
+  height: 100%;
+}
+
+.mapheader {
+  position: fixed;
+  z-index: 100;
+  background: white;
+  width: 100%;
+}
+
+.mapfooter {
+  position: fixed;
+  z-index: 100;
+  bottom: 0;
+  background: white;
+  width: 100%;
 }
