@@ -1,6 +1,30 @@
 #templates { display: none; }
 
-.autocomplete { background: white; border: 1px solid black; }
+#autocomplete {
+  position: absolute;
+  background: white;
+  border: 1px solid lightgray;
+  z-index: 1000;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+#autocomplete .contents [data-template-name=autocomplete-item] {
+  border-bottom: 1px solid lightgray;
+  padding: 7px;
+  cursor: pointer;
+}
+
+#autocomplete .contents [data-template-name=autocomplete-item]:hover {
+  background: #eee;
+}
+
+#autocomplete .copyright {
+  text-align: right;
+  font-size: small;
+  color: gray;
+  padding: 3px;
+}
 
 .navbar-brand {
   float: none;

@@ -1,5 +1,6 @@
 (function() {
-  var autocompleteNode = null;
+  var autocompleteNode = document.getElementById('autocomplete');
+  var contentsNode = autocompleteNode.querySelector('.contents');
 
   window.showAutocomplete = function showAutocomplete(inputField, contents) {
     var clientRect = inputField.getBoundingClientRect();
@@ -8,22 +9,16 @@
       bottom: clientRect.bottom + window.scrollY,
     };
 
-    if(!autocompleteNode) {
-      autocompleteNode = document.createElement('div');
-      autocompleteNode.style.position = 'absolute';
-      autocompleteNode.className = 'autocomplete';
-      document.body.appendChild(autocompleteNode);
-    }
-
     autocompleteNode.style.display = '';
     autocompleteNode.style.left = position.left + 'px';
     autocompleteNode.style.top = position.bottom + 'px';
     autocompleteNode.style.minWidth = clientRect.width + 'px';
 
-    clearNode(autocompleteNode);
+
+    clearNode(contentsNode);
 
     contents.forEach(function(element) {
-      autocompleteNode.appendChild(element);
+      contentsNode.appendChild(element);
     });
   };
 
