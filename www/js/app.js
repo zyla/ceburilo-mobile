@@ -102,8 +102,29 @@ function map(data) {
       .addTo(mymap);
   });
 
+  document.querySelector('.route-time').innerText = formatTime(data.path.time);
+  document.querySelector('.route-distance').innerText = formatDistance(data.path.distance);
+
   function fixLatLng(point) {
     return [point[1], point[0]];
+  }
+
+  function formatTime(ms) {
+    var seconds = ms / 1000;
+
+    var hoursStr = '';
+
+    if(seconds > 3600) {
+      var hours = Math.floor(seconds / 3600);
+      hoursStr = hours + ' godz. '; 
+      seconds -= hours * 3600;
+    }
+
+    return hoursStr + Math.ceil(seconds / 60) + ' min.';
+  }
+
+  function formatDistance(distance) {
+    return Math.round(distance / 1000, 1) + ' km';
   }
 }
 
