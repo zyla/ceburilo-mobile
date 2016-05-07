@@ -2,10 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com maxcdn.bootstrapcdn.com 'unsafe-eval'; style-src 'self' maxcdn.bootstrapcdn.com 'unsafe-inline'; media-src *">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <title>Ceburilo</title>
   </head>
@@ -13,10 +14,31 @@
     <div id="templates">
 
       <div data-template-name="main">
-        Z: <input id="input_begin"><button id="button_location">GPS</button><br>
-        Do: <input id="input_end"><br>
+        <!-- Logo -->
+        <nav class="navbar navbar-inverse navbar-static-top">
+          <div class="container">
+            <a class="navbar-brand text-center center-block">Ceburilo</a>
+          </div>
+        </nav>
 
-        <button id="button_search">Szukaj</button>
+        <!-- Glowna czesc -->
+        <div class="container fill">
+          <div class="row text-center">
+            Dojedz za darmo
+          </div>
+          <div class="row">
+            <div class="col-sm-6 text-center">
+            Z: <input id="input_begin"><button id="button_location">GPS</button><br>
+            </div>
+            <div class="col-sm-6 text-center">
+            Do: <input id="input_end"><br>
+            </div>
+          </div>
+
+          <div class="row">
+            <button id="button_search" class="btn btn-info pull-right">Szukaj</button>
+          </div>
+        </div>
       </div>
 
       <div data-template-name="map">
