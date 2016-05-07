@@ -2,7 +2,11 @@
   var autocompleteNode = null;
 
   window.showAutocomplete = function showAutocomplete(inputField, contents) {
-    var bounds = inputField.getBoundingClientRect();
+    var clientRect = inputField.getBoundingClientRect();
+    var position = {
+      left: clientRect.left + window.scrollX,
+      bottom: clientRect.bottom + window.scrollY,
+    };
 
     if(!autocompleteNode) {
       autocompleteNode = document.createElement('div');
@@ -12,9 +16,9 @@
     }
 
     autocompleteNode.style.display = '';
-    autocompleteNode.style.left = bounds.left + 'px';
-    autocompleteNode.style.top = bounds.bottom + 'px';
-    autocompleteNode.style.minWidth = bounds.width + 'px';
+    autocompleteNode.style.left = position.left + 'px';
+    autocompleteNode.style.top = position.bottom + 'px';
+    autocompleteNode.style.minWidth = clientRect.width + 'px';
 
     clearNode(autocompleteNode);
 
