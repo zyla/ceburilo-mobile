@@ -5,8 +5,10 @@ function main() {
   var input_end = locationAutocompleteWidget(document.getElementById('input_end'));
 
   document.getElementById('button_search').addEventListener('click', function() {
-    console.log('begin:', input_begin.getSelectedItem());
-    console.log('end:', input_end.getSelectedItem());
+    queryRoute({
+      begin: input_begin.getSelectedItem(),
+      end: input_end.getSelectedItem()
+    }, map);
   });
 }
 
@@ -69,18 +71,40 @@ function delayed(fn, ms) {
   };
 }
 
-function map() {
+function map(data) {
   showTemplate('map');
   document.getElementById('show-main').addEventListener('click', function() {
     main();
   });
 
-  var mymap = L.map("mapid").setView([52.2315875, 21.0072721], 12);
+  var mymap = L.map("mapid");
   L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution:
       '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     maxZoom: 19
   }).addTo(mymap);
+
+  var routePoints = data.path.points.coordinates.map(fixLatLng);
+
+  mymap.fitBounds(L.latLngBounds(routePoints), {});
+  L.polyline(routePoints, {
+    color: '#000080', opacity: 0.8,
+  }).addTo(mymap);
+
+  data.stations.forEach(function(station) {
+    L.circleMarker(station.location,
+        { color: '#0000d0', opacity: 0.8, fillOpacity: 0.8, radius: 7 })
+      .addTo(mymap);
+
+    L.popup({ closeButton: false, closeOnClick: false })
+      .setLatLng(station.location)
+      .setContent(station.number + ' ' + station.name)
+      .addTo(mymap);
+  });
+
+  function fixLatLng(point) {
+    return [point[1], point[0]];
+  }
 }
 
 main();

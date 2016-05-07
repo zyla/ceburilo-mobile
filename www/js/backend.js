@@ -1,14 +1,36 @@
-var MAPQUEST_KEY = 'WVNR0GB13tGBhlYkmTbLi8hSvNNJyr4y';
+(function() {
 
-function queryLocations(q, callback) {
-  var xhr = new XMLHttpRequest();
+  var MAPQUEST_KEY = 'WVNR0GB13tGBhlYkmTbLi8hSvNNJyr4y';
 
-  xhr.onload = function() {
-    callback(JSON.parse(xhr.responseText));
+  function getJSON(url, callback) {
+    var xhr = new XMLHttpRequest();
+
+    xhr.onload = function() {
+      callback(JSON.parse(xhr.responseText));
+    };
+
+    // TODO onerror
+
+    xhr.open('GET', url);
+    xhr.send();
+  }
+
+  window.queryLocations = function queryLocations(q, callback) {
+    var url = 'http://open.mapquestapi.com/nominatim/v1/search.php?key=' + MAPQUEST_KEY
+      + '&format=json&limit=10&accept-language=pl&bounded=1&viewbox=20.80,52.27,21.23,52.05&q='
+      + encodeURIComponent(q);
+
+    return getJSON(url, callback);
   };
 
-  xhr.open('GET', 'http://open.mapquestapi.com/nominatim/v1/search.php?key=' + MAPQUEST_KEY
-      + '&format=json&limit=10&accept-language=pl&bounded=1&viewbox=20.80,52.27,21.23,52.05&q='
-      + encodeURIComponent(q));
-  xhr.send();
-}
+  window.queryRoute = function queryRoute(data, callback) {
+    var url = 'http://api.ceburilo.pl/route'
+      + '?beg_lat=' + data.begin.lat
+      + '&beg_lon=' + data.begin.lon
+      + '&dest_lat=' + data.end.lat
+      + '&dest_lon=' + data.end.lon;
+
+    return getJSON(url, callback);
+  };
+
+})();
