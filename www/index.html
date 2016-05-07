@@ -26,17 +26,27 @@
           <div class="row text-center">
             Dojedz za darmo
           </div>
+
           <div class="row">
-            <div class="col-sm-6 text-center">
-            Z: <input id="input_begin"><button id="button_location">GPS</button><br>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="input_begin">Z:</label>
+                <input type="text" class="form-control" id="input_begin">
+              </div>
+              <button id="button_location" class="btn btn-default">GPS</button>
             </div>
-            <div class="col-sm-6 text-center">
-            Do: <input id="input_end"><br>
+
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="input_end">Do:</label>
+                <input type="text" class="form-control" id="input_end">
+              </div>
             </div>
           </div>
 
-          <div class="row">
-            <button id="button_search" class="btn btn-info pull-right">Szukaj</button>
+          <!-- Przycisk wyslij -->
+          <div class="row text-center">
+            <button id="button_search" class="btn btn-info">Szukaj</button>
           </div>
         </div>
       </div>

@@ -11,6 +11,11 @@
   height: 100%;
 }
 
-html, body, #app, #main, [data-template-name=main] {
+body, #app, #main, [data-template-name=main] {
   height: 100%;
+}
+
+.col-sm-6 {
+  padding-top: 30px;
+  padding-bottom: 15px;
 }
