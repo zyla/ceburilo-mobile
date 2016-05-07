@@ -11,6 +11,7 @@
       document.body.appendChild(autocompleteNode);
     }
 
+    autocompleteNode.style.display = '';
     autocompleteNode.style.left = bounds.left + 'px';
     autocompleteNode.style.top = bounds.bottom + 'px';
     autocompleteNode.style.minWidth = bounds.width + 'px';
@@ -20,5 +21,9 @@
     contents.forEach(function(element) {
       autocompleteNode.appendChild(element);
     });
-  }
+  };
+
+  window.hideAutocomplete = function hideAutocomplete() {
+    autocompleteNode.style.display = 'none';
+  };
 })();
