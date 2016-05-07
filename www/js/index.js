@@ -27,7 +27,7 @@ function showTemplate(name) {
 
 function main() {
   showTemplate('main');
-  document.getElementById('show-map').addEventListener('click', function() {
+  document.getElementById('button_search').addEventListener('click', function() {
     map();
   });
 }
