@@ -116,7 +116,7 @@ function map(data) {
       seconds -= hours * 3600;
     }
 
-    return hoursStr + Math.ceil(seconds / 60) + ' min.';
+    return hoursStr + Math.ceil(seconds / 60) + ' min';
   }
 
   function formatDistance(distance) {
