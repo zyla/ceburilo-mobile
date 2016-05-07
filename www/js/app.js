@@ -94,11 +94,7 @@ function map(data) {
   data.stations.forEach(function(station) {
     L.circleMarker(station.location,
         { color: '#0000d0', opacity: 0.8, fillOpacity: 0.8, radius: 7 })
-      .addTo(mymap);
-
-    L.popup({ closeButton: false, closeOnClick: false })
-      .setLatLng(station.location)
-      .setContent(station.number + ' ' + station.name)
+      .bindLabel(station.number + ' ' + station.name, { noHide: true })
       .addTo(mymap);
   });
 
