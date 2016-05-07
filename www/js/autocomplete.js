@@ -2,6 +2,19 @@
   var autocompleteNode = document.getElementById('autocomplete');
   var contentsNode = autocompleteNode.querySelector('.contents');
 
+  var suppressHide = false;
+
+  autocompleteNode.addEventListener('mousedown', function() {
+    suppressHide = true;
+  });
+
+  window.addEventListener('mouseup', function() {
+    if(!suppressHide) {
+      hideAutocomplete();
+    }
+    suppressHide = false;
+  });
+
   window.showAutocomplete = function showAutocomplete(inputField, contents) {
     var clientRect = inputField.getBoundingClientRect();
     var position = {

@@ -26,7 +26,6 @@ function locationAutocompleteWidget(inputElement) {
 
   inputElement.addEventListener('focus', triggerSearch);
   inputElement.addEventListener('input', triggerSearch);
-  inputElement.addEventListener('blur', hideAutocomplete);
 
   function displayAutocompleteResults(results) {
     showAutocomplete(inputElement, results.map(renderItem));
@@ -35,8 +34,7 @@ function locationAutocompleteWidget(inputElement) {
       var elem = copyTemplate('autocomplete-item');
       elem.querySelector('.name').innerText = item.display_name;
 
-      // HACK: 'click' is handled after 'blur', so this has to be 'mousedown'
-      elem.addEventListener('mousedown', function() {
+      elem.addEventListener('click', function() {
         setSelectedItem(item);
         hideAutocomplete();
       });
