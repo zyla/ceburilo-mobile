@@ -3,7 +3,9 @@
 
   var templatesNode = document.getElementById('templates');
   [].forEach.call(templatesNode.childNodes, function(element) {
-    templates[element.id] = element;
+    if(element instanceof HTMLElement) {
+      templates[element.attributes.getNamedItem('data-template-name').value] = element;
+    }
   });
 
   templatesNode.parentNode.removeChild(templatesNode);
