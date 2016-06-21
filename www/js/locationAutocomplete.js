@@ -3,7 +3,8 @@ function locationAutocompleteWidget(inputElement) {
   var lastInput = '';
 
   function triggerSearch() {
-    if(inputElement.value == '' || selectedItem != null) {
+    if(document.activeElement == inputElement && (inputElement.value == '' ||
+          selectedItem != null)) {
       var locations = getRecentLocations();
       displayAutocompleteResults(locations, true);
       return;
