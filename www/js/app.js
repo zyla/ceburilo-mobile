@@ -12,49 +12,6 @@ function main() {
   });
 }
 
-function locationAutocompleteWidget(inputElement) {
-  var selectedItem = null;
-
-  function triggerSearch() {
-    if(inputElement.value == '')
-      return;
-
-    queryLocations(inputElement.value, function(results) {
-      displayAutocompleteResults(results);
-    });
-  }
-
-  triggerSearch = delayed(triggerSearch, 300);
-
-  inputElement.addEventListener('focus', triggerSearch);
-  inputElement.addEventListener('input', triggerSearch);
-
-  function displayAutocompleteResults(results) {
-    showAutocomplete(inputElement, results.map(renderItem));
-
-    function renderItem(item) {
-      var elem = copyTemplate('autocomplete-item');
-      elem.querySelector('.name').innerText = item.display_name;
-
-      elem.addEventListener('click', function() {
-        setSelectedItem(item);
-        hideAutocomplete();
-      });
-      return elem;
-    }
-  }
-
-  function setSelectedItem(item) {
-    selectedItem = item;
-    inputElement.value = item.display_name;
-  }
-
-  return {
-    getSelectedItem: function() { return selectedItem; },
-    setSelectedItem: setSelectedItem,
-  };
-}
-
 function delayed(fn, ms) {
   var timer;
 
@@ -124,4 +81,6 @@ function map(data) {
   }
 }
 
-main();
+window.addEventListener('load', function() {
+  main();
+});
