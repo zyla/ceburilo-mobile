@@ -5,9 +5,7 @@ function locationAutocompleteWidget(inputElement) {
   function triggerSearch() {
     if(inputElement.value == '' || selectedItem != null) {
       var locations = getRecentLocations();
-      if(locations.length > 0) {
-        displayAutocompleteResults(locations, true);
-      }
+      displayAutocompleteResults(locations, true);
       return;
     }
 
@@ -36,11 +34,13 @@ function locationAutocompleteWidget(inputElement) {
 
   function displayAutocompleteResults(results, isRecent) {
     showAutocomplete(inputElement,
-        renderRecentMarker().concat(results.map(renderItem)));
+        renderTopMarker().concat(results.map(renderItem)));
 
-    function renderRecentMarker() {
+    function renderTopMarker() {
       if(isRecent) {
         return [copyTemplate('autocomplete-recent-marker')];
+      } else if (results.length < 1) {
+        return [copyTemplate('autocomplete-notavailable')];
       } else {
         return [];
       }
@@ -52,6 +52,7 @@ function locationAutocompleteWidget(inputElement) {
 
       elem.addEventListener('click', function() {
         setSelectedItem(item);
+        addRecentLocation(item);
         hideAutocomplete();
       });
       return elem;
@@ -79,7 +80,6 @@ function locationAutocompleteWidget(inputElement) {
     selectedItem = item;
     lastInput = item.display_name;
     inputElement.value = item.display_name;
-    addRecentLocation(item);
   }
 
   return {
