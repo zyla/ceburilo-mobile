@@ -3,6 +3,13 @@ function main() {
 
   var input_begin = locationAutocompleteWidget(document.getElementById('input_begin'));
   var input_end = locationAutocompleteWidget(document.getElementById('input_end'));
+  var gps_button = document.getElementById('button_location');
+
+  // potrzebne dla geolokalizacji
+  document.addEventListener("deviceready", onDeviceReady, false);
+  function onDeviceReady() {
+    console.log("navigator.geolocation works well");
+  }
 
   document.getElementById('button_search').addEventListener('click', function() {
     var begin = input_begin.getSelectedItem(); // TODO check null
@@ -15,6 +22,31 @@ function main() {
       end_lon: end.lon,
     });
   });
+
+  gps_button.addEventListener('click', function() {
+    navigator.geolocation.getCurrentPosition(gpsSuccess(input_begin), onGpsError,
+        { enableHighAccuracy: true });
+  });
+}
+
+function gpsSuccess(widget) {
+
+  return function onGpsSuccess(position) {
+    lat = position.coords.latitude;
+    lon = position.coords.longitude;
+
+    item = {};
+    item.display_name = lat + " " + lon;
+    item.lat = lat;
+    item.lon = lon;
+    widget.setSelectedItem(item);
+    };
+}
+
+function onGpsError(error) {
+  // TODO: chmurka?
+  console.log('code: ' + error.code + '\n' +
+        'message: ' + error.message + '\n');
 }
 
 function delayed(fn, ms) {
