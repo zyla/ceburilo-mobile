@@ -2,7 +2,6 @@ window.addEventListener('hashchange', loadRoute);
 
 function loadRoute() {
   var hash = parseHash(location.hash);
-  console.log(JSON.stringify(hash));
   var match;
 
   if(hash.path == 'map') {
