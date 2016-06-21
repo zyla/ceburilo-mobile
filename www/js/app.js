@@ -30,6 +30,7 @@ function delayed(fn, ms) {
 
 function map(data) {
   showTemplate('map');
+  changePath('map');
 
   var mymap = L.map("mapid");
   L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -79,5 +80,5 @@ function map(data) {
 }
 
 window.addEventListener('load', function() {
-  main();
+  loadRoute();
 });
