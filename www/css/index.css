@@ -47,8 +47,11 @@
   position: relative;
 }
 
-#input_begin {
+#input_begin, #input_end {
   height: 40px;
+}
+
+#input_begin {
   padding-right: 36px;
 }
 
