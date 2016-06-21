@@ -92,6 +92,8 @@ html, body, #templates, #app, #main, [data-template-name=main], [data-template-n
   z-index: 100;
   background: white;
   width: 100%;
+  height: 28px;
+  padding-top: 3px;
 }
 
 .mapfooter {
@@ -100,4 +102,19 @@ html, body, #templates, #app, #main, [data-template-name=main], [data-template-n
   bottom: 0;
   background: white;
   width: 100%;
+}
+
+.route-distance, .route-time {
+  display: inline-block;
+  height: 28px;
+  padding-left: 28px;
+}
+
+.route-distance {
+  background: url(../img/bike.svg) no-repeat;
+}
+
+.route-time {
+  background: url(../img/clock.svg) no-repeat;
+  margin-left: 10px;
 }
