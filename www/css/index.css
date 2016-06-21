@@ -65,8 +65,14 @@
   fill: black;
 }
 
-.navbar-brand {
+.navbar {
+  background-color: #00d340;
+}
+
+.navbar-brand, .navbar-brand:hover {
   float: none;
+  color: white;
+  font-size: 28px;
 }
 
 html, body, #templates, #app, #main, [data-template-name=main], [data-template-name=map] {
