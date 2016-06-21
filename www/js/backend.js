@@ -25,10 +25,10 @@
 
   window.queryRoute = function queryRoute(data, callback) {
     var url = 'http://api.ceburilo.pl/route'
-      + '?beg_lat=' + data.begin.lat
-      + '&beg_lon=' + data.begin.lon
-      + '&dest_lat=' + data.end.lat
-      + '&dest_lon=' + data.end.lon;
+      + '?beg_lat=' + data.begin_lat
+      + '&beg_lon=' + data.begin_lon
+      + '&dest_lat=' + data.end_lat
+      + '&dest_lon=' + data.end_lon;
 
     return getJSON(url, callback);
   };
