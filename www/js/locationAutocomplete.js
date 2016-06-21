@@ -3,15 +3,15 @@ function locationAutocompleteWidget(inputElement) {
   var lastInput = '';
 
   function triggerSearch() {
-    if(inputElement.value == lastInput) {
-      return;
-    }
-
     if(inputElement.value == '' || selectedItem != null) {
       var locations = getRecentLocations();
       if(locations.length > 0) {
         displayAutocompleteResults(locations, true);
       }
+      return;
+    }
+
+    if(inputElement.value == lastInput) {
       return;
     }
 
