@@ -27,6 +27,13 @@ function main() {
     navigator.geolocation.getCurrentPosition(gpsSuccess(input_begin), onGpsError,
         { enableHighAccuracy: true });
   });
+
+  var aboutLink = document.querySelector('.about-link');
+  aboutLink.addEventListener('click', function(event) {
+    event.preventDefault();
+    var parent = aboutLink.parentNode;
+    parent.replaceChild(copyTemplate('about'), aboutLink);
+  });
 }
 
 function gpsSuccess(widget) {
