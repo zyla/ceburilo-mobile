@@ -33,6 +33,37 @@
   border-bottom: 1px solid lightgray;
 }
 
+.location-button-wrapper {
+  position: relative;
+}
+
+#input_begin {
+  height: 40px;
+}
+
+#button_location {
+  padding: 4px;
+  border: none;
+  background: transparent;
+
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+
+#button_location svg {
+  width: 32px;
+  height: 32px;
+}
+
+#button_location path {
+  fill: #333;
+}
+
+#button_location:active path {
+  fill: black;
+}
+
 .navbar-brand {
   float: none;
 }
