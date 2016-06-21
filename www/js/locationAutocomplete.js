@@ -2,7 +2,7 @@ function locationAutocompleteWidget(inputElement) {
   var selectedItem = null;
 
   function triggerSearch() {
-    if(inputElement.value == '') {
+    if(inputElement.value == '' || selectedItem != null) {
       var locations = getRecentLocations();
       if(locations.length > 0) {
         displayAutocompleteResults(locations, true);
@@ -17,8 +17,15 @@ function locationAutocompleteWidget(inputElement) {
 
   triggerSearch = delayed(triggerSearch, 300);
 
-  inputElement.addEventListener('focus', triggerSearch);
-  inputElement.addEventListener('input', triggerSearch);
+  inputElement.addEventListener('input', function onInput() {
+    selectedItem = null;
+    triggerSearch();
+  });
+
+  inputElement.addEventListener('focus', function onFocus() {
+    inputElement.select();
+    triggerSearch();
+  });
 
   function displayAutocompleteResults(results, isRecent) {
     showAutocomplete(inputElement,
