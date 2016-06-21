@@ -71,7 +71,7 @@ function map(params) {
   var mymap = L.map("mapid", {
     zoomControl: false
   });
-  L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution:
       '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     maxZoom: 19
