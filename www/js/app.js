@@ -84,10 +84,11 @@ function map(params) {
     maxZoom: 19
   }).addTo(mymap);
 
-  queryRoute(params, function(data) {
+  var beginPoint = parsePoint(params.begin_lat, params.begin_lon);
+  var endPoint = parsePoint(params.end_lat, params.end_lon);
+  mymap.fitBounds(L.latLngBounds([beginPoint, endPoint]), {});
 
-    var beginPoint = parsePoint(params.begin_lat, params.begin_lon);
-    var endPoint = parsePoint(params.end_lat, params.end_lon);
+  queryRoute(params, function(data) {
 
     var walkPathColor = '#aaa';
     var beginPointColor = '#ff8000';
@@ -97,7 +98,6 @@ function map(params) {
 
     addPoint(beginPoint, beginPointColor);
     addPoint(endPoint, endPointColor);
-    mymap.fitBounds(L.latLngBounds([beginPoint, endPoint]), {});
 
     if (data.path.points == null) {
       addPath([beginPoint, endPoint], walkPathColor);
@@ -107,6 +107,8 @@ function map(params) {
 
     var routePoints = data.path.points.coordinates.map(fixLatLng);
     var stations = data.stations;
+
+    mymap.fitBounds(L.latLngBounds(routePoints.concat([beginPoint, endPoint])), {});
 
     addPath([beginPoint, stations[0].location], walkPathColor);
     addPath([stations[stations.length - 1].location, endPoint], walkPathColor);
