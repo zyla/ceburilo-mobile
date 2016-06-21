@@ -1,6 +1,11 @@
-function locationAutocompleteWidget(inputElement) {
+function locationAutocompleteWidget(inputElement, name) {
   var selectedItem = null;
   var lastInput = '';
+
+  var lastSelected = getLastSelected();
+  if(lastSelected) {
+    setSelectedItem(lastSelected);
+  }
 
   function triggerSearch() {
     if(document.activeElement == inputElement && (inputElement.value == '' ||
@@ -54,6 +59,7 @@ function locationAutocompleteWidget(inputElement) {
       elem.addEventListener('click', function() {
         setSelectedItem(item);
         addRecentLocation(item);
+        saveLastSelected(item);
         hideAutocomplete();
       });
       return elem;
@@ -81,6 +87,18 @@ function locationAutocompleteWidget(inputElement) {
     selectedItem = item;
     lastInput = item.display_name;
     inputElement.value = item.display_name;
+  }
+
+  function saveLastSelected(item) {
+    localStorage['lastSelected_' + name] = JSON.stringify(item);
+  }
+
+  function getLastSelected() {
+    try {
+      return JSON.parse(localStorage['lastSelected_' + name]);
+    } catch (e) {
+      return null;
+    }
   }
 
   return {
