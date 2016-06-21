@@ -48,18 +48,48 @@ function map(params) {
   queryRoute(params, function(data) {
 
     var routePoints = data.path.points.coordinates.map(fixLatLng);
+    var stations = data.stations;
 
     mymap.fitBounds(L.latLngBounds(routePoints), {});
-    L.polyline(routePoints, {
-      color: '#000080', opacity: 0.8,
-    }).addTo(mymap);
+
+    var beginPoint = parsePoint(params.begin_lat, params.begin_lon);
+    var endPoint = parsePoint(params.end_lat, params.end_lon);
+
+    var walkPathColor = '#aaa';
+    var beginPointColor = '#ff8000';
+    var endPointColor = '#00d000';
+    var routeColor = '#000080';
+    var stationColor = '#0000d0';
+
+    addPath([beginPoint, stations[0].location], walkPathColor);
+    addPath([stations[stations.length - 1].location, endPoint], walkPathColor);
+
+    addPath(routePoints, routeColor);
 
     data.stations.forEach(function(station) {
-      L.circleMarker(station.location,
-          { color: '#0000d0', opacity: 0.8, fillOpacity: 0.8, radius: 7 })
-        .bindLabel(station.number + ' ' + station.name, { noHide: true })
-        .addTo(mymap);
+      var label = station.number + ' ' + station.name;
+      addPoint(station.location, stationColor, label);
     });
+
+    addPoint(beginPoint, beginPointColor);
+    addPoint(endPoint, endPointColor);
+
+    function addPath(path, color) {
+      return L.polyline(path, {
+        color: color, opacity: 0.8,
+      }).addTo(mymap);
+    }
+
+    function addPoint(point, color, label) {
+      var marker = L.circleMarker(point,
+          { color: color, opacity: 0.8, fillOpacity: 0.8, radius: 7 });
+
+      if(label)
+        marker.bindLabel(label, { noHide: true });
+
+      marker.addTo(mymap);
+      return marker;
+    }
 
     document.querySelector('.route-time').innerText = formatTime(data.path.time);
     document.querySelector('.route-distance').innerText = formatDistance(data.path.distance);
@@ -68,6 +98,10 @@ function map(params) {
 
   function fixLatLng(point) {
     return [point[1], point[0]];
+  }
+
+  function parsePoint(lat, lon) {
+    return [parseFloat(lat), parseFloat(lon)];
   }
 
   function formatTime(ms) {
