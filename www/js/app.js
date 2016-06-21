@@ -67,7 +67,7 @@ function delayed(fn, ms) {
     var self = this, args = arguments;
 
     timer = setTimeout(function() {
-      fn(self, args);
+      fn.apply(self, args);
     }, ms);
   };
 }
