@@ -32,7 +32,9 @@ function map(data) {
   showTemplate('map');
   changePath('map');
 
-  var mymap = L.map("mapid");
+  var mymap = L.map("mapid", {
+    zoomControl: false
+  });
   L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution:
       '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
