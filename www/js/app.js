@@ -30,9 +30,6 @@ function delayed(fn, ms) {
 
 function map(data) {
   showTemplate('map');
-  document.getElementById('show-main').addEventListener('click', function() {
-    main();
-  });
 
   var mymap = L.map("mapid");
   L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
