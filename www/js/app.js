@@ -51,9 +51,9 @@ function gpsSuccess(widget) {
 }
 
 function onGpsError(error) {
-  // TODO: chmurka?
   console.log('code: ' + error.code + '\n' +
         'message: ' + error.message + '\n');
+  showErrorMessage("Nie udało się pobrać współrzędnych z GPS");
 }
 
 function delayed(fn, ms) {
@@ -86,11 +86,6 @@ function map(params) {
 
   queryRoute(params, function(data) {
 
-    var routePoints = data.path.points.coordinates.map(fixLatLng);
-    var stations = data.stations;
-
-    mymap.fitBounds(L.latLngBounds(routePoints), {});
-
     var beginPoint = parsePoint(params.begin_lat, params.begin_lon);
     var endPoint = parsePoint(params.end_lat, params.end_lon);
 
@@ -99,6 +94,19 @@ function map(params) {
     var endPointColor = '#00d000';
     var routeColor = '#000080';
     var stationColor = '#0000d0';
+
+    addPoint(beginPoint, beginPointColor);
+    addPoint(endPoint, endPointColor);
+    mymap.fitBounds(L.latLngBounds([beginPoint, endPoint]), {});
+
+    if (data.path.points == null) {
+      addPath([beginPoint, endPoint], walkPathColor);
+      showPanicMessage();
+      return;
+    }
+
+    var routePoints = data.path.points.coordinates.map(fixLatLng);
+    var stations = data.stations;
 
     addPath([beginPoint, stations[0].location], walkPathColor);
     addPath([stations[stations.length - 1].location, endPoint], walkPathColor);
@@ -109,9 +117,6 @@ function map(params) {
       var label = station.number + ' ' + station.name;
       addPoint(station.location, stationColor, label);
     });
-
-    addPoint(beginPoint, beginPointColor);
-    addPoint(endPoint, endPointColor);
 
     function addPath(path, color) {
       return L.polyline(path, {

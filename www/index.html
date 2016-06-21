@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="libs/leaflet.css">
     <link rel="stylesheet" type="text/css" href="libs/leaflet.label.css">
     <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/modal.css">
     <title>Ceburilo</title>
   </head>
   <body>
@@ -83,6 +84,11 @@
         Brak podpowiedzi
       </div>
 
+      <div class="alert alert-danger" data-template-name="error-msg">
+        <strong>Błąd: </strong>
+        <span class="msg"></span>
+      </div>
+
       <div data-template-name="about">
         <p>Operator warszawskiego roweru miejskiego <a href="https://www.veturilo.waw.pl/">VETURILO</a>
         nie pobiera opłat za przejazdy poniżej 20 minut. Zmieniając rower na
@@ -104,11 +110,19 @@
     <div id="app">
     </div>
 
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <p>Podana trasa nie została znaleziona, kliknij przycisk by powrócić do strony głownej</p>
+        <button id="button_back" class="btn btn-info">Powrót</button>
+      </div>
+    </div>
+
     <script type="text/javascript" src="cordova.js"></script>
     <!-- Leaflet ver 0.7.7 -->
     <script type="text/javascript" src="libs/leaflet.js"></script>
     <script type="text/javascript" src="libs/leaflet.label.js"></script>
     <script type="text/javascript" src="js/templates.js"></script>
+    <script type="text/javascript" src="js/utils.js"></script>
     <script type="text/javascript" src="js/autocomplete.js"></script>
     <script type="text/javascript" src="js/locationAutocomplete.js"></script>
     <script type="text/javascript" src="js/backend.js"></script>
