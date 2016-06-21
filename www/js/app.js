@@ -1,8 +1,8 @@
 function main() {
   showTemplate('main');
 
-  var input_begin = locationAutocompleteWidget(document.getElementById('input_begin'));
-  var input_end = locationAutocompleteWidget(document.getElementById('input_end'));
+  var input_begin = locationAutocompleteWidget(document.getElementById('input_begin'), 'begin');
+  var input_end = locationAutocompleteWidget(document.getElementById('input_end'), 'end');
   var gps_button = document.getElementById('button_location');
 
   // potrzebne dla geolokalizacji
