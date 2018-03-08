@@ -16,7 +16,7 @@
   }
 
   window.queryLocations = function queryLocations(q, callback) {
-    var url = 'http://open.mapquestapi.com/nominatim/v1/search.php?key=' + MAPQUEST_KEY
+    var url = 'https://open.mapquestapi.com/nominatim/v1/search.php?key=' + MAPQUEST_KEY
       + '&format=json&limit=10&accept-language=pl&bounded=1&viewbox=20.80,52.27,21.23,52.05&q='
       + encodeURIComponent(q);
 
@@ -24,7 +24,7 @@
   };
 
   window.queryRoute = function queryRoute(data, callback) {
-    var url = 'http://api.ceburilo.pl/route'
+    var url = 'https://api.ceburilo.pl/route'
       + '?beg_lat=' + data.begin_lat
       + '&beg_lon=' + data.begin_lon
       + '&dest_lat=' + data.end_lat
